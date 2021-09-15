@@ -38,7 +38,10 @@ EMOJI_QUESTION = get_emoji_by_name('question')
 
 @client.event
 async def on_reaction_add(reaction: discord.Reaction, user: discord.User):
-    if reaction.message.channel != mod_channel or reaction.message.user != client.user:
+    wrong_channel = reaction.message.channel != mod_channel
+    not_bot_message = reaction.message.user != client.user
+    only_bot_reacted = reaction.users.length == 1 and reaction.users[0] == client.user
+    if wrong_channel or not_bot_message or only_bot_reacted:
         return
     if reaction.emoji == EMOJI_CHECKMARK:
         verified_message = "Your account has been verified and your access has been granted! Feel free to check any of the " \
