@@ -3,7 +3,7 @@ from discord.ext import commands
 
 ################################
 description = "A bot that helps approve members for our fb discord"
-TOKEN = 'token'
+TOKEN = 'ODg3NDg5MDg3NTYzNDk3NTAy.YUE4nw.jPOZHbaMu-8wXUMOBolwek8A-kw'
 MOD_CHANNEL_ID = 000
 # EMOJIS🥶🥶🥶🥶
 EMOJI_CHECKMARK = '✅'
