@@ -6,9 +6,9 @@ description = "A bot that helps approve members for our fb discord"
 
 #!! these need to be set before running the code !!!
 TOKEN = '[bot token here]'
-MOD_CHANNEL_ID = 000000 #[mod channel id here]
+MOD_CHANNEL_ID = 000000  # [mod channel id here]
 
-#EMOJIS🥶🥶🥶🥶
+# EMOJIS🥶🥶🥶🥶
 EMOJI_CHECKMARK = '✅'
 EMOJI_ENVELOPE = '✉️'
 EMOJI_QUESTION = '❓'
@@ -20,13 +20,17 @@ intents.reactions = True
 intents.members = True
 bot = commands.Bot(command_prefix='$', description=description,  intents=intents)
 
+
+
 ##################################################################
+
+
 @client.event
 async def on_reaction_add(reaction, user):
     # TODO: figure out how to compare reaction.emoji to our emojis here. By emoji.name as a string maybe?
     # then, do something like # if reaction.emoji.name == EMOJI.CHECKMARK, then ...
     verified_message = "Your account has been verified and your access has been granted! Feel free to check any of the " \
-               "verified channels now :-) "
+        "verified channels now :-) "
     userino = reaction.message.mentions[0]
     role = discord.utils.get(reaction.message.guild.roles, name="verified")
     await userino.add_roles(role)
@@ -64,7 +68,7 @@ The mod team wishes you the best and hopes you have a successful 2022 internship
         await message.channel.send("Proof received. Mods will review it shortly :)")
         await mod_channel.send(message.attachments[0])
         last_message = await mod_channel.send(notification_verify)
-        # rn these are commented out bc we're trying to figure out how to distinguish reacts. 
+        # rn these are commented out bc we're trying to figure out how to distinguish reacts.
         # await last_message.add_reaction(EMOJI_CHECKMARK)
         # await last_message.add_reaction(EMOJI_ENVELOPE)
     elif str(message.content).lower().startswith("$zuck verify"):
