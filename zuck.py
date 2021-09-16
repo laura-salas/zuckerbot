@@ -7,8 +7,8 @@ load_dotenv()
 
 ################################
 description = "A bot that helps approve members for our fb discord"
-TOKEN = os.getenv('DISCORD_TOKEN')
-MOD_CHANNEL_ID = os.getenv('MOD_CHANNEL_ID')
+TOKEN = str(os.getenv('DISCORD_TOKEN'))
+MOD_CHANNEL_ID = int(os.getenv('MOD_CHANNEL_ID'))
 # EMOJIS🥶🥶🥶🥶
 EMOJI_CHECKMARK = '✅'
 EMOJI_ENVELOPE = '✉️'
