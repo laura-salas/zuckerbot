@@ -72,7 +72,7 @@ async def on_reaction_add(reaction, _user):
     if reaction.count > 1 and reaction.message.mentions and reaction.message.channel.id == MOD_CHANNEL_ID:
         userino = reaction.message.mentions[0]
         if str(reaction.emoji) == EMOJI_CHECKMARK:
-            role = discord.utils.get(reaction.message.guild.roles, name="test_role")
+            role = discord.utils.get(reaction.message.guild.roles, name="verified")
             await userino.add_roles(role)
             await userino.send(verified_message)
         elif str(reaction.emoji) == EMOJI_ENVELOPE:
