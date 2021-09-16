@@ -1,10 +1,14 @@
+import os
+from dotenv import load_dotenv
 import discord
 from discord.ext import commands
 
+load_dotenv()
+
 ################################
 description = "A bot that helps approve members for our fb discord"
-TOKEN = 'ODg3NDg5MDg3NTYzNDk3NTAy.YUE4nw.5c8mK_cbQrHr2GRbcpoq0xBEsuA'
-MOD_CHANNEL_ID = 887577242077659146
+TOKEN = os.getenv('DISCORD_TOKEN')
+MOD_CHANNEL_ID = os.getenv('MOD_CHANNEL_ID')
 # EMOJIS🥶🥶🥶🥶
 EMOJI_CHECKMARK = '✅'
 EMOJI_ENVELOPE = '✉️'
