@@ -33,9 +33,10 @@ further_verification = "The mod team would like to ask a couple questions about 
 # DMing Bot
 initial_greeting = """Hello! This is the verifier bot for the FB Interns discord.   
 
-To make things easier for the mods and to accelerate the verification process, **please reply here with a screenshot of 
-your career profile that clearly states your full name, as well as the page where it says that you have been accepted to 
-a 2022 position.** 
+To make things easier for the mods and to accelerate the verification process, **please reply here with a screenshot 
+of your __new hire checklist__ and your full name in the right top corner (so you may need to click on the dropdown box). 
+
+Important: __You must have already accepted your offer for your verified status to be granted!__** 
 
 After sending this, a moderator will review this and I will let you know when your access has been approved, 
 or if further verification is required. 
