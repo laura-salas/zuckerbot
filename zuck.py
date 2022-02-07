@@ -183,7 +183,7 @@ async def on_message(message):
         elif str(message.content).lower().startswith("$%s dm_mods" % BOT_NAME):
             await message.channel.send(HELP_IS_ON_WAY)
             await mod_channel.send(NOTIFICATION_HELP % message.author.id)
-            if len(message.content.strip()) > len("$%s dm_mods") + 1:  
+            if len(message.content.strip()) > len("$%s dm_mods") + 1:
                 # if user has attached an additional message
                 await mod_channel.send(
                     'They also sent the following message: "%s"'
@@ -193,8 +193,10 @@ async def on_message(message):
         elif str(message.content).lower().startswith("$%s" % BOT_NAME) or not str(
             message.content
         ).lower().startswith("$%s" % BOT_NAME):
-            if not str(message.content).lower().startswith("$%s" % BOT_NAME)
-                or len(message.content) > len("$%s" % BOT_NAME) + 1:
+            if (
+                not str(message.content).lower().startswith("$%s" % BOT_NAME)
+                or len(message.content) > len("$%s" % BOT_NAME) + 1
+            ):
                 await message.channel.send(INVALID_COMMAND)
             await message.channel.send(COMMAND_HELP)
 
