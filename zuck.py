@@ -107,7 +107,7 @@ async def on_ready():
 
 
 @client.event
-async def on_reaction_add(reaction, _user):
+async def on_raw_reaction_add(reaction):
     """
     Help mods attribute "verified" role by simply clicking on a react button
     :param _user: [unused param]
@@ -116,17 +116,23 @@ async def on_reaction_add(reaction, _user):
         - reaction.message , the message object within the reaction (see param of on_message for more info)
             - reaction.message.mentions , helping us identify the user tagged in the message, if any
     """
+    if (reaction.channel_id != MOD_CHANNEL_ID or reaction.user_id == client.user.id):
+        return
+    
+    channel = await client.fetch_channel(reaction.channel_id)
+    message = await channel.fetch_message(reaction.message_id)
+    guild = await client.fetch_guild(reaction.guild_id)
+
     if (
-        reaction.count > 1
-        and reaction.message.mentions
-        and reaction.message.channel.id == MOD_CHANNEL_ID
+        message.mentions
     ):
-        userino = reaction.message.mentions[0]
+        userino = message.mentions[0]
+        memberino = await guild.fetch_member(userino.id)
         if str(reaction.emoji) == EMOJI_CHECKMARK:
-            role = discord.utils.get(reaction.message.guild.roles, name="verified")
-            await userino.add_roles(role)
+            role = discord.utils.get(guild.roles, name="verified")
+            await memberino.add_roles(role)
             await userino.send(VERIFIED_MESSAGE)
-            await reaction.message.delete()
+            await message.delete()
 
         elif str(reaction.emoji) == EMOJI_ENVELOPE:
             await userino.send(FURTHER_VERIFICATION)
@@ -135,7 +141,7 @@ async def on_reaction_add(reaction, _user):
             await userino.send(DOES_NOT_SATISFY)
 
         elif str(reaction.emoji) == EMOJI_DELETE:
-            await reaction.message.delete()
+            await message.delete()
 
 
 @client.event
